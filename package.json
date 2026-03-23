@@ -4,11 +4,11 @@
   "description": "Display messages embedded in git commits when teammates pull, merge, or rebase",
   "license": "MIT",
   "bin": {
-    "commit-toast-install": "bin/commit-toast-install"
+    "commit-toast": "bin/commit-toast-install"
   },
   "files": [
     "bin/",
-    "commit-toast.sh"
+    "lib/"
   ],
   "engines": {
     "node": ">=14"

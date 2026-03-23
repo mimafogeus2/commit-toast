@@ -35,9 +35,9 @@ Options:
   --help      Show this help message
 
 Examples:
-  npx commit-toast-install
-  npx commit-toast-install --husky
-  npx commit-toast-install --force
+  npx commit-toast
+  npx commit-toast --husky
+  npx commit-toast --force
 EOF
       exit 0
       ;;

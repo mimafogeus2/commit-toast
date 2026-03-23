@@ -17,7 +17,7 @@ Embed a `<commit-toast>` block in any commit message. The next time a teammate r
 ## Install
 
 ```bash
-npx commit-toast-install
+npx commit-toast
 ```
 
 That's it. The installer adds `post-merge` and `post-rewrite` hooks to `.git/hooks/`.
@@ -27,7 +27,7 @@ That's it. The installer adds `post-merge` and `post-rewrite` hooks to `.git/hoo
 If your project uses [Husky](https://typicode.github.io/husky/), pass `--husky` to install into `.husky/` instead:
 
 ```bash
-npx commit-toast-install --husky
+npx commit-toast --husky
 ```
 
 ### Options
@@ -78,7 +78,7 @@ No network calls. No dependencies beyond `bash` and `git`.
 
 - `bash` 3.2+ (macOS default is fine)
 - `git`
-- Node.js ≥ 14 (only needed to run `npx commit-toast-install`)
+- Node.js ≥ 14 (only needed to run `npx commit-toast`)
 
 ---
 

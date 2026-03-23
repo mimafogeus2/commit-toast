@@ -24,7 +24,7 @@ mkdir -p "$HUSKY_DIR"
 # ── copy commit-toast.sh to repo root ─────────────────────────────────────
 
 DEST="$REPO_ROOT/commit-toast.sh"
-cp "$PACKAGE_ROOT/commit-toast.sh" "$DEST"
+cp "$PACKAGE_ROOT/lib/commit-toast.sh" "$DEST"
 chmod +x "$DEST"
 echo "Installed: $DEST"
 

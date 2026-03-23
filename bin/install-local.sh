@@ -22,7 +22,7 @@ mkdir -p "$HOOKS_DIR"
 
 # ── copy commit-toast.sh into .git/hooks/ ─────────────────────────────────
 
-cp "$PACKAGE_ROOT/commit-toast.sh" "$HOOKS_DIR/commit-toast.sh"
+cp "$PACKAGE_ROOT/lib/commit-toast.sh" "$HOOKS_DIR/commit-toast.sh"
 chmod +x "$HOOKS_DIR/commit-toast.sh"
 echo "Installed: $HOOKS_DIR/commit-toast.sh"
 
