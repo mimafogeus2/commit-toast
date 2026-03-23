@@ -15,10 +15,28 @@
   },
   "keywords": [
     "git",
-    "hooks",
+    "git-hooks",
+    "git-hook",
     "commit",
+    "commit-message",
     "husky",
+    "post-merge",
+    "post-rebase",
     "developer-experience",
-    "dx"
-  ]
+    "dx",
+    "devtools",
+    "team-communication",
+    "notification",
+    "cli",
+    "bash"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mimafogeus2/commit-toast"
+  },
+  "homepage": "https://github.com/mimafogeus2/commit-toast#readme",
+  "bugs": {
+    "url": "https://github.com/mimafogeus2/commit-toast/issues"
+  },
+  "author": "Miki Stanger"
 }
