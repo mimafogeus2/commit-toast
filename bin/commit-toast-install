@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# commit-toast-install — install commit-toast git hooks
+set -euo pipefail
+
+# Resolve real path of this script to handle npm symlinks
+_src="${BASH_SOURCE[0]}"
+while [[ -L "$_src" ]]; do _src="$(readlink "$_src")"; done
+BIN_DIR="$(cd "$(dirname "$_src")" && pwd)"
+PACKAGE_ROOT="$(cd "$BIN_DIR/.." && pwd)"
+
+HUSKY=0
+FORCE=0
+
+for arg in "$@"; do
+  case "$arg" in
+    --husky)
+      HUSKY=1
+      ;;
+    --force)
+      FORCE=1
+      ;;
+    --help|-h)
+      cat <<'EOF'
+Usage: commit-toast-install [options]
+
+Install commit-toast git hooks into the current repository.
+
+When a commit message contains a <commit-toast>...</commit-toast> block,
+the enclosed message will be displayed in a framed box the next time
+a teammate pulls, merges, or rebases.
+
+Options:
+  --husky     Install into .husky/ (Husky v9) instead of .git/hooks/
+  --force     Reinstall even if commit-toast is already present
+  --help      Show this help message
+
+Examples:
+  npx commit-toast-install
+  npx commit-toast-install --husky
+  npx commit-toast-install --force
+EOF
+      exit 0
+      ;;
+    *)
+      echo "commit-toast-install: unknown option '$arg'" >&2
+      echo "Run with --help for usage." >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [[ $HUSKY -eq 1 && $FORCE -eq 1 ]]; then
+  exec bash "$BIN_DIR/install-husky.sh" --force
+elif [[ $HUSKY -eq 1 ]]; then
+  exec bash "$BIN_DIR/install-husky.sh"
+elif [[ $FORCE -eq 1 ]]; then
+  exec bash "$BIN_DIR/install-local.sh" --force
+else
+  exec bash "$BIN_DIR/install-local.sh"
+fi

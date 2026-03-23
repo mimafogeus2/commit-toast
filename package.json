@@ -1,0 +1,24 @@
+{
+  "name": "commit-toast",
+  "version": "1.0.0",
+  "description": "Display messages embedded in git commits when teammates pull, merge, or rebase",
+  "license": "MIT",
+  "bin": {
+    "commit-toast-install": "bin/commit-toast-install"
+  },
+  "files": [
+    "bin/",
+    "commit-toast.sh"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [
+    "git",
+    "hooks",
+    "commit",
+    "husky",
+    "developer-experience",
+    "dx"
+  ]
+}
