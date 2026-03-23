@@ -1,6 +1,6 @@
 {
   "name": "commit-toast",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Display messages embedded in git commits when teammates pull, merge, or rebase",
   "license": "MIT",
   "bin": {
