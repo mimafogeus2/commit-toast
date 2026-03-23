@@ -55,7 +55,7 @@ Heads up — run `npm install`, a new dep was added.
 When a teammate pulls or merges that commit, they'll see the toast in their terminal automatically.
 
 - Multiple `<commit-toast>` blocks in one message are all shown.
-- Works with `git pull`, `git merge`, and `git rebase`.
+- Works with `git pull`, `git merge`, `git rebase`, and `git checkout`/`git switch` (including `git branch new-branch start-point`).
 - If a commit has no `<commit-toast>` block, nothing is shown — zero noise.
 
 ---

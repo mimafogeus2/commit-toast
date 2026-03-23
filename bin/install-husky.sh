@@ -69,4 +69,7 @@ install_hook "post-merge" \
 install_hook "post-rewrite" \
   'cat | "$(git rev-parse --show-toplevel)/commit-toast.sh" post-rewrite'
 
+install_hook "post-checkout" \
+  '"$(git rev-parse --show-toplevel)/commit-toast.sh" post-checkout "$@"'
+
 echo "Done. commit-toast hooks installed in $HUSKY_DIR"

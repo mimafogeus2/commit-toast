@@ -68,4 +68,8 @@ install_hook "post-merge" \
 install_hook "post-rewrite" \
   'cat | "$(dirname "$0")/commit-toast.sh" post-rewrite'
 
+# post-checkout: git passes prev-head new-head branch-flag as args
+install_hook "post-checkout" \
+  '"$(dirname "$0")/commit-toast.sh" post-checkout "$@"'
+
 echo "Done. commit-toast hooks installed in $HOOKS_DIR"

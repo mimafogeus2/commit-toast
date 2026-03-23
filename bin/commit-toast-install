@@ -27,7 +27,7 @@ Install commit-toast git hooks into the current repository.
 
 When a commit message contains a <commit-toast>...</commit-toast> block,
 the enclosed message will be displayed in a framed box the next time
-a teammate pulls, merges, or rebases.
+a teammate pulls, merges, rebases, or checks out a branch that contains it.
 
 Options:
   --husky     Install into .husky/ (Husky v9) instead of .git/hooks/

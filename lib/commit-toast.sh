@@ -2,10 +2,14 @@
 # commit-toast.sh — display <commit-toast> messages from new commits
 # Usage: commit-toast.sh post-merge
 #        commit-toast.sh post-rewrite   (reads "old-sha new-sha" lines from stdin)
+#        commit-toast.sh post-checkout <prev-head> <new-head> <branch-flag>
 
 set -euo pipefail
 
 HOOK="${1:-}"
+PREV_HEAD="${2:-}"
+NEW_HEAD="${3:-}"
+BRANCH_FLAG="${4:-0}"
 
 # ── collect new commit SHAs ────────────────────────────────────────────────
 
@@ -26,6 +30,15 @@ collect_shas() {
     while IFS=" " read -r _old new _rest; do
       [[ -n "$new" ]] && shas+=("$new")
     done
+
+  elif [[ "$HOOK" == "post-checkout" ]]; then
+    # Only act on branch checkouts where HEAD actually moved
+    if [[ "$BRANCH_FLAG" != "1" || -z "$PREV_HEAD" || -z "$NEW_HEAD" || "$PREV_HEAD" == "$NEW_HEAD" ]]; then
+      return
+    fi
+    while IFS= read -r sha; do
+      [[ -n "$sha" ]] && shas+=("$sha")
+    done < <(git log --format="%H" "${PREV_HEAD}..${NEW_HEAD}" 2>/dev/null || true)
 
   else
     echo "commit-toast: unknown hook type '$HOOK'" >&2
@@ -114,7 +127,13 @@ main() {
     [[ -n "$sha" ]] && shas+=("$sha")
   done < <(collect_shas)
 
-  for sha in "${shas[@]+"${shas[@]}"}"; do
+  # collect_shas yields newest-first; reverse so oldest commit shows first
+  local reversed=()
+  for (( i=${#shas[@]}-1; i>=0; i-- )); do
+    reversed+=("${shas[$i]}")
+  done
+
+  for sha in "${reversed[@]+"${reversed[@]}"}"; do
     local msg
     msg="$(git log -1 --format="%B" "$sha" 2>/dev/null || true)"
     [[ -n "$msg" ]] && extract_toasts "$msg"
